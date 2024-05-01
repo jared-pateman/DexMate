@@ -11,9 +11,18 @@ struct PokemonInfo: Codable {
     var id: Int
     var name: String
     var sprites: Sprites
+    var types: [PokemonTypes]
 }
 
 struct Sprites: Codable {
     var front_default: String
     var front_shiny: String
+}
+
+struct PokemonTypes: Codable {
+    var type: TypeElement
+}
+
+struct TypeElement: Codable {
+    var name: String
 }

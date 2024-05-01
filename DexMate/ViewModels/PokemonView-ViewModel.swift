@@ -14,6 +14,7 @@ extension PokemonView {
         @Published var pokemonName: String = ""
         @Published var normalSprite: String = ""
         @Published var shinySprite: String = ""
+        @Published var pokemonTypes = [PokemonTypes]()
         @Published var showingShinySprite: Bool = false
         
         func getPokemonInfo() async {
@@ -30,6 +31,7 @@ extension PokemonView {
                 pokemonName = decodedResult.name
                 normalSprite = decodedResult.sprites.front_default
                 shinySprite = decodedResult.sprites.front_shiny
+                pokemonTypes = decodedResult.types
             } catch {
                 // Do Nothing for now just log something went wrong
                 print("Something went wrong: \(error)")

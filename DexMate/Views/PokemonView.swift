@@ -22,6 +22,21 @@ struct PokemonView: View {
                 Text("Show Shiny Sprite?")
             }
             
+            HStack {
+                Text("Types:")
+                    .font(.title3.bold())
+                
+                Spacer()
+                
+                ForEach(viewModel.pokemonTypes, id: \.self.type.name) { type in
+                    Text(type.type.name.capitalized)
+                        .fontWeight(.bold)
+                        .padding()
+                }
+                
+                Spacer()
+            }
+            
             Spacer()
         }
         .navigationBarTitleDisplayMode(.inline)
