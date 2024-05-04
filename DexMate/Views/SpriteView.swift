@@ -16,14 +16,18 @@ struct SpriteView: View {
                 .opacity(0.3)
                 .frame(width: 200, height: 200)
             
-            AsyncImage(url: URL(string: sprite)) { image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .clipped()
-                    .frame(maxWidth: 200)
-            } placeholder: {
-                ProgressView().progressViewStyle(.circular)
+            if sprite.isEmpty {
+                Text("No Image Found")
+            } else {
+                AsyncImage(url: URL(string: sprite)) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .clipped()
+                        .frame(maxWidth: 200)
+                } placeholder: {
+                    ProgressView().progressViewStyle(.circular)
+                }
             }
         }
     }

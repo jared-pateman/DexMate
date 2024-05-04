@@ -12,10 +12,10 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            List(viewModel.results, id: \.self) { result in
+            List(viewModel.filteredPokemon, id: \.self) { result in
                 VStack(alignment: .leading) {
                     NavigationLink {
-                        PokemonView(url: result.url)
+                        PokemonView(url: result.url, name: result.name)
                     } label: {
                         Text(result.name.capitalized)
                             .font(.title2)
@@ -26,6 +26,8 @@ struct ContentView: View {
                 await viewModel.getPokemonList()
             }
             .navigationTitle("Pokedex")
+            .searchable(text: $viewModel.searchText)
+            .autocorrectionDisabled()
         }
     }
 }

@@ -7,6 +7,15 @@
 
 import Foundation
 
+struct PokemonSpeciesInfo: Codable {
+    var varieties: [PokemonVariety]
+}
+
+struct PokemonVariety: Codable {
+    var is_default: Bool
+    var pokemon: Result
+}
+
 struct PokemonInfo: Codable {
     var id: Int
     var name: String
@@ -15,8 +24,8 @@ struct PokemonInfo: Codable {
 }
 
 struct Sprites: Codable {
-    var front_default: String
-    var front_shiny: String
+    var front_default: String?
+    var front_shiny: String?
 }
 
 struct PokemonTypes: Codable {

@@ -16,7 +16,11 @@ struct PokemonView: View {
                 .font(.largeTitle.bold())
                 .frame(alignment: .topLeading)
             
-            SpriteView(sprite: viewModel.showingShinySprite ? viewModel.shinySprite : viewModel.normalSprite)
+            if viewModel.hasSprite {
+                SpriteView(sprite: viewModel.showingShinySprite ? viewModel.shinySprite : viewModel.normalSprite)
+            } else {
+                Text("No Image Found!")
+            }
             
             Toggle(isOn: $viewModel.showingShinySprite) {
                 Text("Show Shiny Sprite?")
@@ -42,15 +46,15 @@ struct PokemonView: View {
         .navigationBarTitleDisplayMode(.inline)
         .padding()
         .task {
-            await viewModel.getPokemonInfo()
+            await viewModel.getSpeciesInfo()
         }
     }
     
-    init(url pokemonURL: String) {
-        self.viewModel = ViewModel(url: pokemonURL)
+    init(url pokemonURL: String, name pokemonName: String) {
+        self.viewModel = ViewModel(url: pokemonURL, name: pokemonName)
     }
 }
 
 #Preview {
-    PokemonView(url: "https://pokeapi.co/api/v2/pokemon/1")
+    PokemonView(url: "https://pokeapi.co/api/v2/pokemon/1", name: "bulbasaur")
 }
