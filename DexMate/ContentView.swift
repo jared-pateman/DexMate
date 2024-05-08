@@ -13,13 +13,11 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List(viewModel.filteredPokemon, id: \.self) { result in
-                VStack(alignment: .leading) {
-                    NavigationLink {
-                        PokemonView(url: result.url, name: result.name)
-                    } label: {
-                        Text(result.name.capitalized)
-                            .font(.title2)
-                    }
+                NavigationLink {
+                    PokemonView(url: result.url, name: result.name)
+                } label: {
+                    Text(result.name.capitalized)
+                        .font(.title2)
                 }
             }
             .task {
