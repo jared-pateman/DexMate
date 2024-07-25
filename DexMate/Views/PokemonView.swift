@@ -41,6 +41,11 @@ struct PokemonView: View {
                 Spacer()
             }
             
+            if let preEvolution = viewModel.evolvesFrom {
+                Text("Evolves from: \(preEvolution.capitalized)")
+                    .font(.title3.bold())
+            }
+            
             Spacer()
         }
         .navigationBarTitleDisplayMode(.inline)

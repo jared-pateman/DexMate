@@ -19,6 +19,8 @@ extension PokemonView {
         @Published var showingShinySprite: Bool = false
         @Published var hasSprite: Bool = true
         
+        @Published var evolvesFrom: String?
+        
         private var pokemonInfoURL: String = ""
         
         func getSpeciesInfo() async {
@@ -36,6 +38,10 @@ extension PokemonView {
                         pokemonInfoURL = variety.pokemon.url
                         break
                     }
+                }
+                
+                if let evolvedFrom = decodedResult.evolves_from_species {
+                    evolvesFrom = evolvedFrom.name
                 }
                 await getPokemonInfo()
 

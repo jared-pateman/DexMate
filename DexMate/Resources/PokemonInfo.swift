@@ -8,6 +8,7 @@
 import Foundation
 
 struct PokemonSpeciesInfo: Codable {
+    var evolves_from_species: EvolutionInfo?
     var varieties: [PokemonVariety]
 }
 
@@ -34,4 +35,9 @@ struct PokemonTypes: Codable {
 
 struct TypeElement: Codable {
     var name: String
+}
+
+struct EvolutionInfo: Codable {
+    var name: String
+    var url: String
 }
